@@ -1,0 +1,13 @@
+﻿<bg xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
+  <settings-container child-control-width='true' child-expand-width='true' size-delta-y='-15'>
+
+    <checkbox-setting value ='enabled' on-change='setEnabled' text='Enabled'></checkbox-setting>
+    <checkbox-setting value='forceNJS' on-change='setForceNJS' text='Force NJS'></checkbox-setting>
+    <slider-setting active ='~showNJS' value='njsValue' on-change='setNjs' text='NJS' increment='0.1' min='0' max='50' hover-hint='An NJS of 0 will use the NJS of the selected difficulty'></slider-setting>
+    <slider-setting active='~showJump' value ='jumpDisValue' on-change='setJumpDis' text='Desired Jump Distance' increment='0.1' min='~minJump' max='~maxJump' hover-hint='Will attempt to calculate spawn offset to reach this jump distance, failing that it will get as close as it can using the map njs'></slider-setting>
+    <checkbox-setting active ='~showJump' value='usePrefJumpValues' on-change='setUsePrefJumpValues' text='Use Preferred JD values'></checkbox-setting>
+    <slider-setting active ='~showNJS' value='spawnOffset' on-change='setSpawnOffset' increment='0.1' min='-2' max='2'  text='Simulated Spawn Offset'></slider-setting>
+    <slider-setting active ='~showNJS' value='bpmValue' on-change='setBPM' increment='1' min='0' max='400'  text='Simulated BPM' hover-hint='A simulated BPM of 0 will use the bpm of the map as the simulated bpm'></slider-setting>  
+    <button active='~showJump' align='Center' on-click='prefButtonClicked' text='Jump Distance Preferences'></button>
+</settings-container>
+</bg>
