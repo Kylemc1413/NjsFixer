@@ -1,10 +1,10 @@
 ﻿<bg xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
-	<settings-container child-control-width='true' child-expand-width='true' size-delta-y='-15'>
+  <settings-container child-control-width='true' child-expand-width='true' size-delta-y='-15'>
 
-		<checkbox-setting value ='enabled' on-change='setEnabled' text='Enabled'></checkbox-setting>
-		<checkbox-setting text='Force NJS' interactable='false' hover-hint='Disabled in Multiplayer'></checkbox-setting>
-		<slider-setting value ='jumpDisValue' on-change='setJumpDis' text='Desired Jump Distance' increment='0.1' min='~minJump' max='~maxJump' hover-hint='Will attempt to calculate spawn offset to reach this jump distance, failing that it will get as close as it can using the map njs'></slider-setting>
-		<checkbox-setting value='usePrefJumpValues' on-change='setUsePrefJumpValues' text='Use Preferred JD values'></checkbox-setting>
-		<button align='Center' on-click='prefButtonClicked' text='Jump Distance Preferences'></button>
-	</settings-container>
+    <checkbox-setting value ='enabled' on-change='setEnabled' text='Enabled'></checkbox-setting>
+    <checkbox-setting text='Force NJS' interactable='false' hover-hint='Disabled in Multiplayer'></checkbox-setting>
+    <slider-setting value ='jumpDisValue' on-change='setJumpDis' text='Desired Jump Distance' increment='0.1' min='~minJump' max='~maxJump' hover-hint='Will attempt to calculate spawn offset to reach this jump distance, failing that it will get as close as it can using the map njs'></slider-setting>
+    <checkbox-setting value='usePrefJumpValues' on-change='setUsePrefJumpValues' text='Use Preferred JD values'></checkbox-setting>
+    <button align='Center' on-click='prefButtonClicked' text='Jump Distance Preferences'></button>
+</settings-container>
 </bg>
