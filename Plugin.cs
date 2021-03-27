@@ -22,7 +22,8 @@ namespace NjsFixer
             var harmony = new Harmony("com.kyle1413.BeatSaber.NjsFixer");
             harmony.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
             BS_Utils.Utilities.BSEvents.gameSceneLoaded += BSEvents_gameSceneLoaded;
-            BeatSaberMarkupLanguage.GameplaySetup.GameplaySetup.instance.AddTab("NjsFixer", "NjsFixer.UI.BSML.modifierUI.bsml", UI.ModifierUI.instance);
+            BeatSaberMarkupLanguage.GameplaySetup.GameplaySetup.instance.AddTab("NjsFixer", "NjsFixer.UI.BSML.modifierUI.bsml", UI.ModifierUI.instance, BeatSaberMarkupLanguage.GameplaySetup.MenuType.Solo);
+            BeatSaberMarkupLanguage.GameplaySetup.GameplaySetup.instance.AddTab("NjsFixerOnline", "NjsFixer.UI.BSML.modifierOnlineUI.bsml", UI.ModifierUI.instance, BeatSaberMarkupLanguage.GameplaySetup.MenuType.Online);
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
         }
 
@@ -39,7 +40,11 @@ namespace NjsFixer
         private void BSEvents_gameSceneLoaded()
         {
             bool WillOverride = BS_Utils.Plugin.LevelData.IsSet && !BS_Utils.Gameplay.Gamemode.IsIsolatedLevel
-                && Config.UserConfig.enabled && BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Standard && BS_Utils.Plugin.LevelData.GameplayCoreSceneSetupData.practiceSettings == null;
+                && Config.UserConfig.enabled && (BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Standard || BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Multiplayer) && BS_Utils.Plugin.LevelData.GameplayCoreSceneSetupData.practiceSettings == null;
+            if (WillOverride && BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Multiplayer)
+            {
+                Config.UserConfig.dontForceNJS = true;
+            }
             if(WillOverride && !Config.UserConfig.dontForceNJS)
                 BS_Utils.Gameplay.ScoreSubmission.DisableSubmission("NjsFixer");
 
