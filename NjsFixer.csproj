@@ -157,6 +157,9 @@
   <ItemGroup>
     <EmbeddedResource Include="UI\BSML\preferencesList.bsml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\BSML\modifierOnlineUI.bsml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\Beat Saber\Plugins"</PostBuildEvent>
