@@ -40,11 +40,7 @@ namespace NjsFixer
         private void BSEvents_gameSceneLoaded()
         {
             bool WillOverride = BS_Utils.Plugin.LevelData.IsSet && !BS_Utils.Gameplay.Gamemode.IsIsolatedLevel
-                && Config.UserConfig.enabled && (BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Standard || BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Multiplayer) && BS_Utils.Plugin.LevelData.GameplayCoreSceneSetupData.practiceSettings == null;
-            if (WillOverride && BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Multiplayer)
-            {
-                Config.UserConfig.dontForceNJS = true;
-            }
+                && Config.UserConfig.enabled && BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Standard && BS_Utils.Plugin.LevelData.GameplayCoreSceneSetupData.practiceSettings == null;
             if(WillOverride && !Config.UserConfig.dontForceNJS)
                 BS_Utils.Gameplay.ScoreSubmission.DisableSubmission("NjsFixer");
 
