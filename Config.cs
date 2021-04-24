@@ -8,7 +8,7 @@ using System.Linq;
 using UnityEngine;
 namespace NjsFixer
 {
-    internal class ExtendedColorScheme : ColorScheme
+    /*internal class ExtendedColorScheme : ColorScheme
     {
         public ExtendedColorScheme() : base("Default", "DefaultColorScheme", 
             true, Color.black, Color.black, Color.black, Color.black, false, 
@@ -16,7 +16,7 @@ namespace NjsFixer
         {
 
         }
-    }
+    }*/
     public class NjsPref
     {
         public float njs = 12f;
