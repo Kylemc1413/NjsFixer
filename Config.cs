@@ -8,15 +8,6 @@ using System.Linq;
 using UnityEngine;
 namespace NjsFixer
 {
-    internal class ExtendedColorScheme : ColorScheme
-    {
-        public ExtendedColorScheme() : base("Default", "DefaultColorScheme", 
-            true, Color.black, Color.black, Color.black, Color.black, false, 
-            Color.black,Color.black, Color.black)
-        {
-
-        }
-    }
     public class NjsPref
     {
         public float njs = 12f;
@@ -35,6 +26,7 @@ namespace NjsFixer
         public float bpm = 0;
         public float spawnOffset = 0;
         public bool enabled = false;
+        public bool enabledInPractice = false;
         public bool dontForceNJS = false;
         public float jumpDistance = 24f;
         public int minJumpDistance = 20;
@@ -47,12 +39,13 @@ namespace NjsFixer
 
         }
         [JsonConstructor]
-        public NjsFixerConfig(float njs, float bpm, float spawnOffset, bool enabled, bool dontForceNJS, float jumpDistance, int minJumpDistance, int maxJumpDistance, bool usePreferredJumpDistanceValues, List<NjsPref> preferredValues)
+        public NjsFixerConfig(float njs, float bpm, float spawnOffset, bool enabled, bool enabledInPractice, bool dontForceNJS, float jumpDistance, int minJumpDistance, int maxJumpDistance, bool usePreferredJumpDistanceValues, List<NjsPref> preferredValues)
         {
             this.njs = njs;
             this.bpm = bpm;
             this.spawnOffset = spawnOffset;
             this.enabled = enabled;
+            this.enabledInPractice = enabledInPractice;
             this.dontForceNJS = dontForceNJS;
             this.jumpDistance = jumpDistance;
             this.minJumpDistance = minJumpDistance;

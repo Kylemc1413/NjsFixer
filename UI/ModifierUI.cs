@@ -76,6 +76,20 @@ namespace NjsFixer.UI
         {
             modEnabled = value;
         }
+        [UIValue("practiceEnabled")]
+        public bool practiceEnabled
+        {
+            get => Config.UserConfig.enabledInPractice;
+            set
+            {
+                Config.UserConfig.enabledInPractice = value;
+            }
+        }
+        [UIAction("setPracticeEnabled")]
+        void SetPracticeEnabled(bool value)
+        {
+            practiceEnabled = value;
+        }
         [UIValue("showNJS")]
         public bool showNJS
         {
