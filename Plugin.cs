@@ -22,7 +22,8 @@ namespace NjsFixer
             var harmony = new Harmony("com.kyle1413.BeatSaber.NjsFixer");
             harmony.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
             BS_Utils.Utilities.BSEvents.gameSceneLoaded += BSEvents_gameSceneLoaded;
-            BeatSaberMarkupLanguage.GameplaySetup.GameplaySetup.instance.AddTab("NjsFixer", "NjsFixer.UI.BSML.modifierUI.bsml", UI.ModifierUI.instance);
+            BeatSaberMarkupLanguage.GameplaySetup.GameplaySetup.instance.AddTab("NjsFixer", "NjsFixer.UI.BSML.modifierUI.bsml", UI.ModifierUI.instance, BeatSaberMarkupLanguage.GameplaySetup.MenuType.Solo);
+            BeatSaberMarkupLanguage.GameplaySetup.GameplaySetup.instance.AddTab("NjsFixerOnline", "NjsFixer.UI.BSML.modifierOnlineUI.bsml", UI.ModifierUI.instance, BeatSaberMarkupLanguage.GameplaySetup.MenuType.Online);
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
         }
 

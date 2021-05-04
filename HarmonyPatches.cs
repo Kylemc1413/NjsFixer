@@ -13,7 +13,7 @@ namespace NjsFixer
         public static void Prefix(ref float startNoteJumpMovementSpeed, float startBpm, ref float noteJumpStartBeatOffset, ref BeatmapObjectSpawnMovementData __instance, ref bool __state)
         {
             bool WillOverride = BS_Utils.Plugin.LevelData.IsSet && !BS_Utils.Gameplay.Gamemode.IsIsolatedLevel 
-                && Config.UserConfig.enabled && BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Standard && (Config.UserConfig.enabledInPractice || BS_Utils.Plugin.LevelData.GameplayCoreSceneSetupData.practiceSettings == null);
+                && Config.UserConfig.enabled && (BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Standard || BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Multiplayer) && (Config.UserConfig.enabledInPractice || BS_Utils.Plugin.LevelData.GameplayCoreSceneSetupData.practiceSettings == null);
             __state = WillOverride;
             if (!WillOverride) return;
 
@@ -27,7 +27,7 @@ namespace NjsFixer
                 njs = startNoteJumpMovementSpeed;
             float simOffset = 0;
             //Change NJS and Offset
-            if (!Config.UserConfig.dontForceNJS)
+            if (!Config.UserConfig.dontForceNJS && BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Standard)
             {
                 BS_Utils.Gameplay.ScoreSubmission.DisableSubmission("NjsFixer");
                 float numCurr = 60f / startBpm;
