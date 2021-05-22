@@ -9,6 +9,8 @@ using BeatSaberMarkupLanguage.Components;
 using BeatSaberMarkupLanguage.Attributes;
 using UnityEngine;
 using BeatSaberMarkupLanguage.MenuButtons;
+using BeatSaberMarkupLanguage.Components.Settings;
+
 namespace NjsFixer.UI
 {
     public class ModifierUI : NotifiableSingleton<ModifierUI>
@@ -18,6 +20,8 @@ namespace NjsFixer.UI
         private int minJump => Config.UserConfig.minJumpDistance;
         [UIValue("maxJump")]
         private int maxJump => Config.UserConfig.maxJumpDistance;
+        [UIComponent("njsSlider")]
+        private SliderSetting njsSlider;
         [UIValue("njsValue")]
         public float njsValue
         {
@@ -33,6 +37,8 @@ namespace NjsFixer.UI
         {
             njsValue = value;
         }
+        [UIComponent("spawnOffsetSlider")]
+        private SliderSetting spawnOffsetSlider;
         [UIValue("spawnOffset")]
         public float spawnOffset
         {
@@ -47,6 +53,8 @@ namespace NjsFixer.UI
         {
             spawnOffset = value;
         }
+        [UIComponent("bpmSlider")]
+        private SliderSetting bpmSlider;
         [UIValue("bpmValue")]
         public float bpmValue
         {
@@ -127,6 +135,8 @@ namespace NjsFixer.UI
             forceNJS = value;
         }
 
+        [UIComponent("jumpDisSlider")]
+        private SliderSetting jumpDisSlider;
         [UIValue("jumpDisValue")]
         public float jumpDisValue
         {
@@ -163,6 +173,21 @@ namespace NjsFixer.UI
             var ActiveFlowCoordinator = DeepestChildFlowCoordinator(BeatSaberUI.MainFlowCoordinator);
             _prefFlow.ParentFlow = ActiveFlowCoordinator;
             ActiveFlowCoordinator.PresentFlowCoordinator(_prefFlow, null, ViewController.AnimationDirection.Horizontal, true);
+        }
+
+        [UIComponent("leftButton")]
+        private RectTransform leftButton;
+        [UIComponent("rightButton")]
+        private RectTransform rightButton;
+        [UIAction("#post-parse")]
+        void PostParse()
+        {
+            SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), njsSlider, 0.1f);
+            SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), spawnOffsetSlider, 0.1f);
+            SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), bpmSlider, 1);
+            SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), jumpDisSlider, 0.1f);
+            GameObject.Destroy(leftButton.gameObject);
+            GameObject.Destroy(rightButton.gameObject);
         }
 
         public static FlowCoordinator DeepestChildFlowCoordinator(FlowCoordinator root)

@@ -137,6 +137,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ReflectionUtil.cs" />
+    <Compile Include="SliderButton.cs" />
     <Compile Include="UI\ModifierUI.cs" />
     <Compile Include="UI\PreferencesFlowCoordinator.cs" />
     <Compile Include="UI\PreferencesListViewController.cs" />
