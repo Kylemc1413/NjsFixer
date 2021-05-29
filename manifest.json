@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/nike4613/ModSaber-MetadataFileSchema/master/Schema.json",
   "author": "Kyle1413",
   "description": "Allows you to force the initial spawning of notes across maps.",
-  "gameVersion": "1.15.0",
+  "gameVersion": "1.16.1",
   "id": "NjsFixer",
   "name": "NjsFixer",
   "version": "1.8.0",
