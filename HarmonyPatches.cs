@@ -35,8 +35,8 @@ namespace NjsFixer
                 while (njs * numCurr * num2Curr > 18f)
                     num2Curr /= 2f;
                 //      num2Curr += spawnMovementData.GetPrivateField<float>("_noteJumpStartBeatOffset");
-                if (num2Curr < 1f)
-                    num2Curr = 1f;
+                if (num2Curr < 0.25f)
+                    num2Curr = 0.25f;
                 float jumpDurCurr = num2Curr * numCurr * 2f;
                 float jumpDisCurr = njs * jumpDurCurr;
 
@@ -46,11 +46,11 @@ namespace NjsFixer
                 float num2Sim = 4f;
                 while (njs * numSim * num2Sim > 18f)
                     num2Sim /= 2f;
+                if (num2Sim < 0.25f)
+                    num2Sim = 0.25f;
                 var num2SimOffset = num2Sim + Config.UserConfig.spawnOffset;
-                if (num2Sim < 1f)
-                    num2Sim = 1f;
-                if (num2SimOffset < 1f)
-                    num2SimOffset = 1f;
+                if (num2SimOffset < 0.25f)
+                    num2SimOffset = 0.25f;
                 float jumpDurSim = num2SimOffset * numSim * 2f;
                 float jumpDisSim = njs * jumpDurSim;
 
@@ -70,8 +70,8 @@ namespace NjsFixer
                 while (njs * numCurr * num2Curr > 18f)
                     num2Curr /= 2f;
                 //      num2Curr += spawnMovementData.GetPrivateField<float>("_noteJumpStartBeatOffset");
-                if (num2Curr < 1f)
-                    num2Curr = 1f;
+                if (num2Curr < 0.25f)
+                    num2Curr = 0.25f;
                 float jumpDurCurr = num2Curr * numCurr * 2f;
                 float jumpDisCurr = njs * jumpDurCurr;
 
