@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using HMUI;
+using IPA.Utilities;
+using BeatSaberMarkupLanguage;
 namespace NjsFixer.UI
 {
 
@@ -28,7 +30,7 @@ namespace NjsFixer.UI
 
         protected override void BackButtonWasPressed(ViewController topViewController)
         {
-            ParentFlow.InvokeMethod("DismissFlowCoordinator", this, ViewController.AnimationDirection.Horizontal, null, false); ;
+            ParentFlow?.DismissFlowCoordinator(this, null, ViewController.AnimationDirection.Horizontal, false);
         }
     }
 }

@@ -3,7 +3,7 @@
 
     <checkbox-setting value ='enabled' on-change='setEnabled' text='Enabled'></checkbox-setting>
 	  <checkbox-setting text='Force NJS' interactable='false' hover-hint='Disabled in Multiplayer'></checkbox-setting>
-    <slider-setting id='jumpDisSlider' value ='jumpDisValue' on-change='setJumpDis' text='Desired Jump Distance' increment='0.1' min='~minJump' max='~maxJump' hover-hint='Will attempt to calculate spawn offset to reach this jump distance, failing that it will get as close as it can using the map njs'></slider-setting>
+    <slider-setting formatter='jumpDisFormatter' id='jumpDisSlider' value ='jumpDisValue' on-change='setJumpDis' text='Desired Half Jump Distance' increment='0.1' min='~minJump' max='~maxJump' hover-hint='Will attempt to calculate spawn offset to reach this half jump distance, failing that it will get as close as it can using the map njs'></slider-setting>
     <checkbox-setting value='usePrefJumpValues' on-change='setUsePrefJumpValues' text='Use Preferred JD values'></checkbox-setting>
     <button align='Center' on-click='prefButtonClicked' text='Jump Distance Preferences'></button>
 </settings-container>

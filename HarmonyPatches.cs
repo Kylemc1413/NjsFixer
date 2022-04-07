@@ -10,10 +10,10 @@ namespace NjsFixer
     [HarmonyPatch(typeof(BeatmapObjectSpawnMovementData), "Init")]
     internal class SpawnMovementDataUpdatePatch
     {
-        public static void Prefix(ref float startNoteJumpMovementSpeed, float startBpm, ref float noteJumpStartBeatOffset, ref BeatmapObjectSpawnMovementData __instance, ref bool __state)
+        public static void Prefix(ref float startNoteJumpMovementSpeed, BeatmapObjectSpawnMovementData.NoteJumpValueType noteJumpValueType, float startBpm, ref float noteJumpValue, ref BeatmapObjectSpawnMovementData __instance, ref bool __state)
         {
             bool WillOverride = BS_Utils.Plugin.LevelData.IsSet && !BS_Utils.Gameplay.Gamemode.IsIsolatedLevel 
-                && Config.UserConfig.enabled && (BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Standard || BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Multiplayer) && (Config.UserConfig.enabledInPractice || BS_Utils.Plugin.LevelData.GameplayCoreSceneSetupData.practiceSettings == null);
+                && Config.UserConfig.enabled && noteJumpValueType == BeatmapObjectSpawnMovementData.NoteJumpValueType.BeatOffset && (BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Standard || BS_Utils.Plugin.LevelData.Mode == BS_Utils.Gameplay.Mode.Multiplayer) && (Config.UserConfig.enabledInPractice || BS_Utils.Plugin.LevelData.GameplayCoreSceneSetupData.practiceSettings == null);
             __state = WillOverride;
             if (!WillOverride) return;
 
@@ -32,7 +32,7 @@ namespace NjsFixer
                 BS_Utils.Gameplay.ScoreSubmission.DisableSubmission("NjsFixer");
                 float numCurr = 60f / startBpm;
                 float num2Curr = 4f;
-                while (njs * numCurr * num2Curr > 18f)
+                while (njs * numCurr * num2Curr > 17.999f)
                     num2Curr /= 2f;
                 //      num2Curr += spawnMovementData.GetPrivateField<float>("_noteJumpStartBeatOffset");
                 if (num2Curr < 0.25f)
@@ -44,7 +44,7 @@ namespace NjsFixer
                 float simBPM = Config.UserConfig.bpm > 0 ? Config.UserConfig.bpm : startBpm;
                 float numSim = 60f / simBPM;
                 float num2Sim = 4f;
-                while (njs * numSim * num2Sim > 18f)
+                while (njs * numSim * num2Sim > 17.999f)
                     num2Sim /= 2f;
                 if (num2Sim < 0.25f)
                     num2Sim = 0.25f;
@@ -58,7 +58,7 @@ namespace NjsFixer
 
 
                 simOffset = (num2Curr * jumpDurMul) - num2Curr;
-                Logger.log.Debug($"BPM/NJS/Offset {startBpm}/{startNoteJumpMovementSpeed}/{noteJumpStartBeatOffset}");
+                Logger.log.Debug($"BPM/NJS/Offset {startBpm}/{startNoteJumpMovementSpeed}/{noteJumpValue}");
                 Logger.log.Debug($"Sim BPM/NJS/Offset {Config.UserConfig.bpm}/{njs}/{Config.UserConfig.spawnOffset}");
                 Logger.log.Debug($"HalfJumpCurrent: {num2Curr} | HalfJumpSimulated {num2SimOffset} | SimJumpDis {jumpDisSim} | CurrJumpDis {jumpDisCurr} | JumpDurMul {jumpDurMul} | Simulated Offset {simOffset}");
                 startNoteJumpMovementSpeed = njs;
@@ -67,7 +67,7 @@ namespace NjsFixer
             {
                 float numCurr = 60f / startBpm;
                 float num2Curr = 4f;
-                while (njs * numCurr * num2Curr > 18f)
+                while (njs * numCurr * num2Curr > 17.999f)
                     num2Curr /= 2f;
                 //      num2Curr += spawnMovementData.GetPrivateField<float>("_noteJumpStartBeatOffset");
                 if (num2Curr < 0.25f)
@@ -86,13 +86,13 @@ namespace NjsFixer
                 float desiredHalfJumpDur = desiredJumpDur / 2f / num2Curr;
                 float jumpDurMul = desiredJumpDur / jumpDurCurr;
                 simOffset = (num2Curr * jumpDurMul) - num2Curr;
-                Logger.log.Debug($"BPM/NJS/Offset {startBpm}/{startNoteJumpMovementSpeed}/{noteJumpStartBeatOffset}");
+                Logger.log.Debug($"BPM/NJS/Offset {startBpm}/{startNoteJumpMovementSpeed}/{noteJumpValue}");
                 Logger.log.Debug($"HalfJumpCurrent: {num2Curr} | DesiredHalfJump {desiredHalfJumpDur} | DesiredJumpDis {desiredJumpDis} | CurrJumpDis {jumpDisCurr} | Simulated Offset {simOffset}");
             }
 
 
 
-            noteJumpStartBeatOffset = simOffset;
+            noteJumpValue = simOffset;
 
 
 

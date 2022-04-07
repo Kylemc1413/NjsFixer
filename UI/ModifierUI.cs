@@ -151,6 +151,11 @@ namespace NjsFixer.UI
         {
             jumpDisValue = value;
         }
+        [UIAction("jumpDisFormatter")]
+        public string HalfJumpDistanceForJumpDistance(float value)
+        {
+            return (value / 2f).ToString("F2");
+        }
         [UIValue("usePrefJumpValues")]
         public bool usePrefJumpValues
         {
