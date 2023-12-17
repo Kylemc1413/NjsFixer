@@ -19,9 +19,7 @@ namespace NjsFixer
 
             noteJumpValueType = BeatmapObjectSpawnMovementData.NoteJumpValueType.JumpDuration;
 
-            var oneBeat = 60f / startBpm;
             float mapNJS = startNoteJumpMovementSpeed;
-
             float njs = Config.UserConfig.dontForceNJS ? mapNJS : Config.UserConfig.njs;
 
             if (njs == 0)

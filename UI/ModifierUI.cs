@@ -21,6 +21,7 @@ namespace NjsFixer.UI
         private int minJump => Config.UserConfig.minJumpDistance;
         [UIValue("maxJump")]
         private int maxJump => Config.UserConfig.maxJumpDistance;
+
         [UIComponent("njsSlider")]
         private SliderSetting njsSlider;
         [UIValue("njsValue")]
@@ -38,38 +39,6 @@ namespace NjsFixer.UI
         {
             njsValue = value;
         }
-        //[UIComponent("spawnOffsetSlider")]
-        //private SliderSetting spawnOffsetSlider;
-        //[UIValue("spawnOffset")]
-        //public float spawnOffset
-        //{
-        //    get => Config.UserConfig.spawnOffset;
-        //    set
-        //    {
-        //        Config.UserConfig.spawnOffset = value;
-        //    }
-        //}
-        //[UIAction("setSpawnOffset")]
-        //void setSpawnOffset(float value)
-        //{
-        //    spawnOffset = value;
-        //}
-        //[UIComponent("bpmSlider")]
-        //private SliderSetting bpmSlider;
-        //[UIValue("bpmValue")]
-        //public float bpmValue
-        //{
-        //    get => Config.UserConfig.bpm;
-        //    set
-        //    {
-        //        Config.UserConfig.bpm = value;
-        //    }
-        //}
-        //[UIAction("setBPM")]
-        //void SetBPM(float value)
-        //{
-        //    bpmValue = value;
-        //}
 
         [UIValue("enabled")]
         public bool modEnabled
@@ -85,6 +54,7 @@ namespace NjsFixer.UI
         {
             modEnabled = value;
         }
+
         [UIValue("practiceEnabled")]
         public bool practiceEnabled
         {
@@ -157,6 +127,7 @@ namespace NjsFixer.UI
         {
             return value.ToString("F2");
         }
+
         [UIValue("usePrefJumpValues")]
         public bool usePrefJumpValues
         {
@@ -171,6 +142,7 @@ namespace NjsFixer.UI
         {
             usePrefJumpValues = value;
         }
+
         [UIAction("prefButtonClicked")]
         void PrefButtonClicked()
         {
@@ -189,8 +161,6 @@ namespace NjsFixer.UI
         void PostParse()
         {
             SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), njsSlider, 0.1f);
-            //SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), spawnOffsetSlider, 0.1f);
-            //SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), bpmSlider, 1);
             SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), jumpDisSlider, 0.1f);
             GameObject.Destroy(leftButton.gameObject);
             GameObject.Destroy(rightButton.gameObject);

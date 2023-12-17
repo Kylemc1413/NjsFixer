@@ -23,8 +23,6 @@ namespace NjsFixer
     public class NjsFixerConfig
     {
         public float njs = 0;
-        //public float bpm = 0;
-        //public float spawnOffset = 0;
         public bool enabled = false;
         public bool enabledInPractice = false;
         public bool dontForceNJS = false;
@@ -39,11 +37,9 @@ namespace NjsFixer
 
         }
         [JsonConstructor]
-        public NjsFixerConfig(float njs,/* float bpm, float spawnOffset, */bool enabled, bool enabledInPractice, bool dontForceNJS, float jumpDistance, int minJumpDistance, int maxJumpDistance, bool usePreferredJumpDistanceValues, List<NjsPref> preferredValues)
+        public NjsFixerConfig(float njs, bool enabled, bool enabledInPractice, bool dontForceNJS, float jumpDistance, int minJumpDistance, int maxJumpDistance, bool usePreferredJumpDistanceValues, List<NjsPref> preferredValues)
         {
             this.njs = njs;
-          //  this.bpm = bpm;
-          //  this.spawnOffset = spawnOffset;
             this.enabled = enabled;
             this.enabledInPractice = enabledInPractice;
             this.dontForceNJS = dontForceNJS;
@@ -73,12 +69,10 @@ namespace NjsFixer
                     var oldConfig = new BS_Utils.Utilities.Config("NjsFixer");
                     UserConfig = new NjsFixerConfig();
                     UserConfig.njs = oldConfig.GetFloat("NjsFixer", "njs", 0, true);
-                   // UserConfig.bpm = oldConfig.GetFloat("NjsFixer", "bpm", 0, true);
-                   // UserConfig.spawnOffset = oldConfig.GetFloat("NjsFixer", "spawnOffset", 0, true);
                     UserConfig.enabled = oldConfig.GetBool("NjsFixer", "Enabled", false, true);
                     UserConfig.dontForceNJS = oldConfig.GetBool("NjsFixer", "DontForceNJS", false, true);
                     UserConfig.jumpDistance = oldConfig.GetFloat("NjsFixer", "DesiredJumpDistance", 24f, true);
-                    UserConfig.minJumpDistance = oldConfig.GetInt("NjsFixer", "minJumpDistance", 20, true);
+                    UserConfig.minJumpDistance = oldConfig.GetInt("NjsFixer", "minJumpDistance", 15, true);
                     UserConfig.maxJumpDistance = oldConfig.GetInt("NjsFixer", "maxJumpDistance", 30, true);
                     try
                     {
@@ -101,14 +95,6 @@ namespace NjsFixer
                 UserConfig = JsonConvert.DeserializeObject<NjsFixerConfig>(File.ReadAllText(ConfigPath));
             }
             UserConfig.preferredValues = UserConfig.preferredValues.OrderByDescending(x => x.njs).ToList();
-            /*
-            njs = ModPrefs.GetFloat("NjsFixer", "njs", 0, true);
-            bpm = ModPrefs.GetFloat("NjsFixer", "bpm", 0, true);
-            spawnOffset = ModPrefs.GetFloat("NjsFixer", "spawnOffset", 0, true);
-            enabled = ModPrefs.GetBool("NjsFixer", "Enabled", false, true);
-            dontForceNJS = ModPrefs.GetBool("NjsFixer", "DontForceNJS", false, true);
-            jumpDistance = ModPrefs.GetFloat("NjsFixer", "DesiredJumpDistance", 24f, true);
-            */
         }
 
         public static void Write()
