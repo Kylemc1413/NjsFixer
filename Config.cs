@@ -23,8 +23,8 @@ namespace NjsFixer
     public class NjsFixerConfig
     {
         public float njs = 0;
-        public float bpm = 0;
-        public float spawnOffset = 0;
+        //public float bpm = 0;
+        //public float spawnOffset = 0;
         public bool enabled = false;
         public bool enabledInPractice = false;
         public bool dontForceNJS = false;
@@ -39,11 +39,11 @@ namespace NjsFixer
 
         }
         [JsonConstructor]
-        public NjsFixerConfig(float njs, float bpm, float spawnOffset, bool enabled, bool enabledInPractice, bool dontForceNJS, float jumpDistance, int minJumpDistance, int maxJumpDistance, bool usePreferredJumpDistanceValues, List<NjsPref> preferredValues)
+        public NjsFixerConfig(float njs,/* float bpm, float spawnOffset, */bool enabled, bool enabledInPractice, bool dontForceNJS, float jumpDistance, int minJumpDistance, int maxJumpDistance, bool usePreferredJumpDistanceValues, List<NjsPref> preferredValues)
         {
             this.njs = njs;
-            this.bpm = bpm;
-            this.spawnOffset = spawnOffset;
+          //  this.bpm = bpm;
+          //  this.spawnOffset = spawnOffset;
             this.enabled = enabled;
             this.enabledInPractice = enabledInPractice;
             this.dontForceNJS = dontForceNJS;
@@ -73,8 +73,8 @@ namespace NjsFixer
                     var oldConfig = new BS_Utils.Utilities.Config("NjsFixer");
                     UserConfig = new NjsFixerConfig();
                     UserConfig.njs = oldConfig.GetFloat("NjsFixer", "njs", 0, true);
-                    UserConfig.bpm = oldConfig.GetFloat("NjsFixer", "bpm", 0, true);
-                    UserConfig.spawnOffset = oldConfig.GetFloat("NjsFixer", "spawnOffset", 0, true);
+                   // UserConfig.bpm = oldConfig.GetFloat("NjsFixer", "bpm", 0, true);
+                   // UserConfig.spawnOffset = oldConfig.GetFloat("NjsFixer", "spawnOffset", 0, true);
                     UserConfig.enabled = oldConfig.GetBool("NjsFixer", "Enabled", false, true);
                     UserConfig.dontForceNJS = oldConfig.GetBool("NjsFixer", "DontForceNJS", false, true);
                     UserConfig.jumpDistance = oldConfig.GetFloat("NjsFixer", "DesiredJumpDistance", 24f, true);

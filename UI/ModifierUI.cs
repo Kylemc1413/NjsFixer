@@ -10,6 +10,7 @@ using BeatSaberMarkupLanguage.Attributes;
 using UnityEngine;
 using BeatSaberMarkupLanguage.MenuButtons;
 using BeatSaberMarkupLanguage.Components.Settings;
+using BeatSaberMarkupLanguage.Util;
 
 namespace NjsFixer.UI
 {
@@ -37,38 +38,38 @@ namespace NjsFixer.UI
         {
             njsValue = value;
         }
-        [UIComponent("spawnOffsetSlider")]
-        private SliderSetting spawnOffsetSlider;
-        [UIValue("spawnOffset")]
-        public float spawnOffset
-        {
-            get => Config.UserConfig.spawnOffset;
-            set
-            {
-                Config.UserConfig.spawnOffset = value;
-            }
-        }
-        [UIAction("setSpawnOffset")]
-        void setSpawnOffset(float value)
-        {
-            spawnOffset = value;
-        }
-        [UIComponent("bpmSlider")]
-        private SliderSetting bpmSlider;
-        [UIValue("bpmValue")]
-        public float bpmValue
-        {
-            get => Config.UserConfig.bpm;
-            set
-            {
-                Config.UserConfig.bpm = value;
-            }
-        }
-        [UIAction("setBPM")]
-        void SetBPM(float value)
-        {
-            bpmValue = value;
-        }
+        //[UIComponent("spawnOffsetSlider")]
+        //private SliderSetting spawnOffsetSlider;
+        //[UIValue("spawnOffset")]
+        //public float spawnOffset
+        //{
+        //    get => Config.UserConfig.spawnOffset;
+        //    set
+        //    {
+        //        Config.UserConfig.spawnOffset = value;
+        //    }
+        //}
+        //[UIAction("setSpawnOffset")]
+        //void setSpawnOffset(float value)
+        //{
+        //    spawnOffset = value;
+        //}
+        //[UIComponent("bpmSlider")]
+        //private SliderSetting bpmSlider;
+        //[UIValue("bpmValue")]
+        //public float bpmValue
+        //{
+        //    get => Config.UserConfig.bpm;
+        //    set
+        //    {
+        //        Config.UserConfig.bpm = value;
+        //    }
+        //}
+        //[UIAction("setBPM")]
+        //void SetBPM(float value)
+        //{
+        //    bpmValue = value;
+        //}
 
         [UIValue("enabled")]
         public bool modEnabled
@@ -154,7 +155,7 @@ namespace NjsFixer.UI
         [UIAction("jumpDisFormatter")]
         public string HalfJumpDistanceForJumpDistance(float value)
         {
-            return (value / 2f).ToString("F2");
+            return value.ToString("F2");
         }
         [UIValue("usePrefJumpValues")]
         public bool usePrefJumpValues
@@ -188,8 +189,8 @@ namespace NjsFixer.UI
         void PostParse()
         {
             SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), njsSlider, 0.1f);
-            SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), spawnOffsetSlider, 0.1f);
-            SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), bpmSlider, 1);
+            //SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), spawnOffsetSlider, 0.1f);
+            //SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), bpmSlider, 1);
             SliderButton.Register(GameObject.Instantiate(leftButton), GameObject.Instantiate(rightButton), jumpDisSlider, 0.1f);
             GameObject.Destroy(leftButton.gameObject);
             GameObject.Destroy(rightButton.gameObject);

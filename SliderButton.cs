@@ -2,7 +2,7 @@
 using HMUI;
 using UnityEngine;
 using UnityEngine.UI;
-
+using IPA.Utilities;
 namespace NjsFixer
 {
     public class SliderButton : MonoBehaviour
@@ -50,7 +50,7 @@ namespace NjsFixer
             if (slider != null)
             {
                 slider.slider.value += step;
-                slider.slider.HandleNormalizedValueDidChange(slider.slider, slider.slider.NormalizeValue(slider.slider.value));
+                slider.slider.InvokeMethod<object, RangeValuesTextSlider>("HandleNormalizedValueDidChange",slider.slider, slider.slider.NormalizeValue(slider.slider.value));
             }
         }
     }
